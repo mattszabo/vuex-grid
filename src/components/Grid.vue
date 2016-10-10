@@ -1,17 +1,12 @@
 <template>
   <div id="my-grid">
-    GRID {{ pos }}
-    <br />
-    <br />
-    <br />
-    <div class="my-grid" v-for="row in grid">
-      <span v-for="i in row.length">
-        <span class="my-grid-square">{{ row[i-1] }}</span>
+    {{ pos }}
+    <div class="my-grid" v-for="i in grid.y">
+      <span v-for="j in grid.x">
+        <span v-if="pos.row === i-1 && pos.col === j-1" class="my-grid-square">X</span>
+        <span v-else class="my-grid-square">0</span>
       </span>
     </div>
-    <br>
-    <br>
-    <br>
     <button @click="move('UP')">up</button>
     <button @click="move('DOWN')">down</button>
     <button @click="move('LEFT')">left</button>
