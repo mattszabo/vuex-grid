@@ -3,8 +3,8 @@
     {{ pos }}
     <div class="my-grid" v-for="i in grid.y">
       <span v-for="j in grid.x">
-        <span v-if="pos.row === i-1 && pos.col === j-1" class="my-grid-square">X</span>
-        <span v-else class="my-grid-square">0</span>
+        <span v-if="pos.row === i-1 && pos.col === j-1" class="my-grid-square active"></span>
+        <span v-else class="my-grid-square"></span>
       </span>
     </div>
     <button @click="move('UP')">up</button>
@@ -36,5 +36,13 @@
 <style scoped>
   .my-grid {
     font-size: 30px;
+  }
+  .my-grid-square {
+    padding: 0 15px;
+    border: 1px solid black;
+    background-color: white;
+  }
+  .active {
+    background-color: black;
   }
 </style>
