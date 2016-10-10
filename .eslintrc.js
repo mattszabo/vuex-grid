@@ -16,6 +16,8 @@ module.exports = {
     'arrow-parens': 0,
     // allow async-await
     'generator-star-spacing': 0,
+    // no space before function paren
+    "space-before-function-paren": [1, {"anonymous": "never", "named": "never"}],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   }
