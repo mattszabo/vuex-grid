@@ -1,11 +1,18 @@
 <template>
   <div id="my-grid">
-    {{ pos }}
-    <div class="my-grid" v-for="i in grid.y">
-      <span v-for="j in grid.x">
-        <span v-if="pos.row === i-1 && pos.col === j-1" class="my-grid-square active"></span>
-        <span v-else class="my-grid-square"></span>
-      </span>
+    <h1>Grid app</h1>
+    <p>Click on the input box to use keyboard arrows for movement</p>
+    <h2>Score: {{ score }}</h2>
+    <div class="my-grid">
+      <div v-for="row in grid.rows">
+        <span v-for="col in grid.cols">
+          <span v-if="player.row === row-1 && player.col === col-1" class="my-grid-square active" />
+          <span v-else>
+            <span v-if="food.row === row-1 && food.col === col-1" class="my-grid-square green" />
+            <span v-else class="my-grid-square" />
+          </span>
+        </span>
+      </div>
     </div>
     <button @click="move('UP')">up</button>
     <button @click="move('DOWN')">down</button>
@@ -29,8 +36,14 @@
       grid() {
         return this.$store.getters.grid
       },
-      pos() {
-        return this.$store.getters.pos
+      player() {
+        return this.$store.getters.playerPos
+      },
+      food() {
+        return this.$store.getters.foodPos
+      },
+      score() {
+        return this.$store.getters.score
       }
     }
   }
@@ -39,6 +52,7 @@
 <style scoped>
   .my-grid {
     font-size: 30px;
+    padding-bottom: 10px;
   }
   .my-grid-square {
     padding: 0 15px;
@@ -47,5 +61,17 @@
   }
   .active {
     background-color: black;
+  }
+  .green {
+    background-color: green;
+  }
+  h1 {
+    color: #42b983;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  p {
+    padding-top: 0;
+    margin-top: 0
   }
 </style>

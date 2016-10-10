@@ -3,33 +3,74 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+const moveUp = function(row, col) {
+  if (row > 0) {
+    row -= 1
+  }
+  return { row, col }
+}
+
+const moveDown = function(row, col, height) {
+  if (row < height - 1) {
+    row += 1
+  }
+  return { row, col }
+}
+
+const moveLeft = function(row, col) {
+  if (col > 0) {
+    col -= 1
+  }
+  return { row, col }
+}
+
+const moveRight = function(row, col, width) {
+  if (col < width - 1) {
+    col += 1
+  }
+  return { row, col }
+}
+
 export default new Vuex.Store({
   state: {
     width: 9,
     height: 6,
-    pos: { row: 1, col: 1 }
+    playerPos: { row: 1, col: 1 },
+    foodPos: { row: 0, col: 0 },
+    score: 0
   },
   mutations: {
     MOVE(state, direction) {
-      let { row, col } = state.pos
+      let { row, col } = state.playerPos
       if (direction === 'UP') {
-        if (row > 0) {
-          row -= 1
-        }
+        state.playerPos = moveUp(row, col)
       } else if (direction === 'DOWN') {
-        if (row < state.height - 1) {
-          row += 1
-        }
+        state.playerPos = moveDown(row, col, state.height)
       } else if (direction === 'LEFT') {
-        if (col > 0) {
-          col -= 1
-        }
+        state.playerPos = moveLeft(row, col)
       } else if (direction === 'RIGHT') {
-        if (col < state.width - 1) {
-          col += 1
-        }
+        state.playerPos = moveRight(row, col, state.width)
       }
-      state.pos = { row, col }
+      if (state.playerPos.row === state.foodPos.row && state.playerPos.col === state.foodPos.col) {
+        let score = state.score
+        score++
+        state.score = score
+        row = Math.floor(Math.random() * state.height)
+        col = Math.floor(Math.random() * state.width)
+        state.foodPos = { row, col }
+      } else {
+        // let direction = Math.floor(Math.random() * 4)
+        // let { row, col } = state.foodPos
+        // if (direction === 1) {
+        //   state.foodPos = moveUp(row, col)
+        // } else if (direction === 2) {
+        //   state.foodPos = moveDown(row, col, state.height)
+        // } else if (direction === 3) {
+        //   state.foodPos = moveLeft(row, col)
+        // } else if (direction === 4) {
+        //   state.foodPos = moveRight(row, col, state.width)
+        // }
+      }
     }
   },
   actions: {
@@ -39,9 +80,11 @@ export default new Vuex.Store({
   },
   getters: {
     grid: state => ({
-      x: state.width,
-      y: state.height
+      cols: state.width,
+      rows: state.height
     }),
-    pos: state => state.pos
+    playerPos: state => state.playerPos,
+    foodPos: state => state.foodPos,
+    score: state => state.score
   }
 })

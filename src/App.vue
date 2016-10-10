@@ -1,9 +1,5 @@
 <template>
   <div id="app">
-    <hello></hello>
-    <p>
-      Welcome to your Vue.js app!
-    </p>
     <Grid />
   </div>
 </template>
