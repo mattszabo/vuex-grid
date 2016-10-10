@@ -16,4 +16,8 @@ describe('Grid.vue', () => {
   it('renders 4 buttons', () => {
     expect(vm.$el.querySelectorAll('button').length).to.equal(4)
   })
+
+  it('renders 1 input', () => {
+    expect(vm.$el.querySelectorAll('input').length).to.equal(1)
+  })
 })
