@@ -55,8 +55,14 @@ export default new Vuex.Store({
         let score = state.score
         score++
         state.score = score
-        row = Math.floor(Math.random() * state.height)
-        col = Math.floor(Math.random() * state.width)
+        let uniquePos = false
+        while (!uniquePos) {
+          row = Math.floor(Math.random() * state.height)
+          col = Math.floor(Math.random() * state.width)
+          if (row !== state.playerPos.row && col !== state.playerPos.col) {
+            uniquePos = true
+          }
+        }
         state.foodPos = { row, col }
       } else {
         // let direction = Math.floor(Math.random() * 4)
