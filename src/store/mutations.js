@@ -1,25 +1,25 @@
-const moveUp = function(row, col) {
+export const moveUp = function(row, col) {
   if (row > 0) {
     row -= 1
   }
   return { row, col }
 }
 
-const moveDown = function(row, col, height) {
+export const moveDown = function(row, col, height = 6) {
   if (row < height - 1) {
     row += 1
   }
   return { row, col }
 }
 
-const moveLeft = function(row, col) {
+export const moveLeft = function(row, col) {
   if (col > 0) {
     col -= 1
   }
   return { row, col }
 }
 
-const moveRight = function(row, col, width) {
+export const moveRight = function(row, col, width = 9) {
   if (col < width - 1) {
     col += 1
   }
