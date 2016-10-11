@@ -26,6 +26,24 @@ export const moveRight = function(row, col, width = 9) {
   return { row, col }
 }
 
+export const isSameSquare = function(pos1, pos2) {
+  return (pos1.row === pos2.row && pos1.col === pos2.col)
+}
+
+// only supports one position, lets work in multiple positions
+export const findRandomEmptySquare = function(position, width = 9, height = 6) {
+  let uniquePos = false
+  let row, col
+  while (!uniquePos) {
+    row = Math.floor(Math.random() * height)
+    col = Math.floor(Math.random() * width)
+    if (row !== position.row && col !== position.col) {
+      uniquePos = true
+    }
+  }
+  return { row, col }
+}
+
 export default {
   MOVE(state, direction) {
     let { row, col } = state.playerPos
@@ -38,19 +56,14 @@ export default {
     } else if (direction === 'RIGHT') {
       state.playerPos = moveRight(row, col, state.width)
     }
-    if (state.playerPos.row === state.foodPos.row && state.playerPos.col === state.foodPos.col) {
+    // apply game logic
+    let { playerPos, foodPos } = state
+    if (isSameSquare(playerPos, foodPos)) {
       let score = state.score
       score++
       state.score = score
-      let uniquePos = false
-      while (!uniquePos) {
-        row = Math.floor(Math.random() * state.height)
-        col = Math.floor(Math.random() * state.width)
-        if (row !== state.playerPos.row && col !== state.playerPos.col) {
-          uniquePos = true
-        }
-      }
-      state.foodPos = { row, col }
+      foodPos = findRandomEmptySquare(playerPos)
+      state.foodPos = foodPos
     } else {
       // let direction = Math.floor(Math.random() * 4)
       // let { row, col } = state.foodPos
