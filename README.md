@@ -6,7 +6,9 @@
 
 # vuex-grid
 
-> A Vue.js project
+> A grid based Vuex app. Use the buttons to move the black square around the grid.
+> Colliding with the green squares causes it to re-spawn and increases score.
+
 
 ## Build Setup
 
@@ -20,11 +22,6 @@ npm run dev
 # build for production with minification
 npm run build
 
-# run unit tests
-npm run unit
-
-# run all tests
+# run tests
 npm test
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
