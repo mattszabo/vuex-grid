@@ -64,18 +64,6 @@ export default {
       state.score = score
       foodPos = findRandomEmptySquare(playerPos)
       state.foodPos = foodPos
-    } else {
-      // let direction = Math.floor(Math.random() * 4)
-      // let { row, col } = state.foodPos
-      // if (direction === 1) {
-      //   state.foodPos = moveUp(row, col)
-      // } else if (direction === 2) {
-      //   state.foodPos = moveDown(row, col, state.height)
-      // } else if (direction === 3) {
-      //   state.foodPos = moveLeft(row, col)
-      // } else if (direction === 4) {
-      //   state.foodPos = moveRight(row, col, state.width)
-      // }
     }
   }
 }
