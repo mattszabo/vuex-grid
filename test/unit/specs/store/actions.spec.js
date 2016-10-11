@@ -7,17 +7,17 @@ const testAction = (action, args, state, expectedMutations, done) => {
   const commit = (type, payload) => {
     const mutation = expectedMutations[count]
     expect(mutation.type).to.equal(type)
-    if(payload) {
+    if (payload) {
       expect(mutation.payload).to.deep.equal(payload)
     }
     count++
-    if(count >= expectedMutations.length) {
+    if (count >= expectedMutations.length) {
       done()
     }
   }
   action({ commit, state }, ...args)
 
-  if(expectedMutations.length === 0) {
+  if (expectedMutations.length === 0) {
     expect(count).to.equal(0)
     done()
   }
@@ -36,7 +36,7 @@ describe('actions', () => {
     // second param should be ['UP']
     // fill in state?
     testAction(actions.move, [], state, [
-      {type: 'MOVE' }
+      { type: 'MOVE' }
     ], done)
   })
 })

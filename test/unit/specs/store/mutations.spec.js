@@ -1,5 +1,5 @@
 import { moveUp, moveDown, moveLeft, moveRight,
-        isSameSquare, findRandomEmptySquare, MOVE } from 'src/store/mutations'
+        isSameSquare, findRandomEmptySquare } from 'src/store/mutations'
 
 describe('mutations', () => {
   describe('move helper functions', () => {
