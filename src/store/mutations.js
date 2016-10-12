@@ -36,11 +36,8 @@ export const mutations = {
     // apply game logic
     let { playerPos, foodPos } = state
     if (isSameSquare(playerPos, foodPos)) {
-      let score = state.score
-      score++
-      state.score = score
-      foodPos = findRandomEmptySquare(playerPos)
-      state.foodPos = foodPos
+      state.score++
+      state.foodPos = findRandomEmptySquare(playerPos)
     }
   }
 }
