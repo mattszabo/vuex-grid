@@ -6,6 +6,7 @@
 
 # vuex-grid
 
+
 > A grid based Vuex app. Use the buttons to move the black square around the grid.
 > Colliding with the green squares causes it to re-spawn and increases score.
 
