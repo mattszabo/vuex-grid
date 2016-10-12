@@ -8,8 +8,8 @@ const propsData = {
 }
 
 describe('<Grid />', () => {
-  const Something = Vue.extend(Grid)
-  const vm = new Something({ propsData }).$mount()
+  const GridComponent = Vue.extend(Grid)
+  const vm = new GridComponent({ propsData }).$mount()
 
   it('renders a 10x10 grid', () => {
     expect(vm.$el.querySelectorAll('.my-grid-square').length).to.equal(100)
