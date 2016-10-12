@@ -36,5 +36,7 @@ describe('mutations', () => {
     expect(state.playerPos).to.deep.equal({ row: 1, col: 0 })
     mutations.MOVE(state, 'RIGHT')
     expect(state.playerPos).to.deep.equal({ row: 1, col: 1 })
+    mutations.MOVE(state, 'INVALID')
+    expect(state.playerPos).to.deep.equal({ row: 1, col: 1 })
   })
 })
