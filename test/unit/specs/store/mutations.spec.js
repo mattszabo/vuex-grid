@@ -1,35 +1,6 @@
-import { moveUp, moveDown, moveLeft, moveRight,
-        isSameSquare, findRandomEmptySquare } from 'src/store/mutations'
+import { mutations, isSameSquare, findRandomEmptySquare } from 'src/store/mutations'
 
 describe('mutations', () => {
-  describe('move helper functions', () => {
-    const row = 1
-    const col = 1
-    it('moves player up one space', () => {
-      const pos = moveUp(row, col)
-      const expectedPos = { row: 0, col: 1 }
-      expect(pos).to.deep.equal(expectedPos)
-    })
-
-    it('moves player down one space', () => {
-      const pos = moveDown(row, col)
-      const expectedPos = { row: 2, col: 1 }
-      expect(pos).to.deep.equal(expectedPos)
-    })
-
-    it('moves player left one space', () => {
-      const pos = moveLeft(row, col)
-      const expectedPos = { row: 1, col: 0 }
-      expect(pos).to.deep.equal(expectedPos)
-    })
-
-    it('moves player right one space', () => {
-      const pos = moveRight(row, col)
-      const expectedPos = { row: 1, col: 2 }
-      expect(pos).to.deep.equal(expectedPos)
-    })
-  })
-
   describe('collision detection helper functions', () => {
     const pos1 = { row: 1, col: 1 }
     it('determines if two positions are equal', () => {
@@ -46,5 +17,24 @@ describe('mutations', () => {
       expect(emptySquare.col).to.be.at.least(0)
       expect(emptySquare.col).to.be.below(10)
     })
+  })
+
+  it('moves the player in all four directions', () => {
+    let state = {
+      width: 10,
+      height: 10,
+      playerPos: { row: 1, col: 1 },
+      foodPos: { row: 0, col: 0 },
+      score: 0
+    }
+    expect(state.playerPos).to.deep.equal({ row: 1, col: 1 })
+    mutations.MOVE(state, 'UP')
+    expect(state.playerPos).to.deep.equal({ row: 0, col: 1 })
+    mutations.MOVE(state, 'DOWN')
+    expect(state.playerPos).to.deep.equal({ row: 1, col: 1 })
+    mutations.MOVE(state, 'LEFT')
+    expect(state.playerPos).to.deep.equal({ row: 1, col: 0 })
+    mutations.MOVE(state, 'RIGHT')
+    expect(state.playerPos).to.deep.equal({ row: 1, col: 1 })
   })
 })

@@ -1,37 +1,9 @@
-export const moveUp = function(row, col) {
-  if (row > 0) {
-    row -= 1
-  }
-  return { row, col }
-}
-
-export const moveDown = function(row, col, height = 6) {
-  if (row < height - 1) {
-    row += 1
-  }
-  return { row, col }
-}
-
-export const moveLeft = function(row, col) {
-  if (col > 0) {
-    col -= 1
-  }
-  return { row, col }
-}
-
-export const moveRight = function(row, col, width = 9) {
-  if (col < width - 1) {
-    col += 1
-  }
-  return { row, col }
-}
-
 export const isSameSquare = function(pos1, pos2) {
   return (pos1.row === pos2.row && pos1.col === pos2.col)
 }
 
 // only supports one position, lets work in multiple positions
-export const findRandomEmptySquare = function(position, width = 9, height = 6) {
+export const findRandomEmptySquare = function(position, width = 10, height = 10) {
   let uniquePos = false
   let row, col
   while (!uniquePos) {
@@ -44,17 +16,16 @@ export const findRandomEmptySquare = function(position, width = 9, height = 6) {
   return { row, col }
 }
 
-export default {
+export const mutations = {
   MOVE(state, direction) {
-    let { row, col } = state.playerPos
     if (direction === 'UP') {
-      state.playerPos = moveUp(row, col)
+      state.playerPos.row < 1 ? state.playerPos.row : state.playerPos.row--
     } else if (direction === 'DOWN') {
-      state.playerPos = moveDown(row, col, state.height)
+      state.playerPos.row >= state.height - 1 ? state.playerPos.row : state.playerPos.row++
     } else if (direction === 'LEFT') {
-      state.playerPos = moveLeft(row, col)
+      state.playerPos.col < 1 ? state.playerPos.col : state.playerPos.col--
     } else if (direction === 'RIGHT') {
-      state.playerPos = moveRight(row, col, state.width)
+      state.playerPos.col >= state.width - 1 ? state.playerPos.col : state.playerPos.col++
     }
     // apply game logic
     let { playerPos, foodPos } = state
