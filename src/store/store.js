@@ -9,8 +9,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    width: 9,
-    height: 6,
+    width: 10,
+    height: 10,
     playerPos: { row: 1, col: 1 },
     foodPos: { row: 0, col: 0 },
     score: 0
