@@ -21,13 +21,26 @@ describe('<GridInput />', () => {
     expect(vm.$el.querySelectorAll('input').length).to.equal(1)
   })
 
-  it('dispatches the move action', () => {
-    vm = new Vue({
-      el: document.createElement('div'),
-      store,
-      render: h => h(GridInput)
-    })
+  vm = new Vue({
+    el: document.createElement('div'),
+    store,
+    render: h => h(GridInput)
+  })
+  it('dispatches the move action in all four directions', () => {
     vm.$children[0].move('UP')
     expect(vm.$children[0].$store.getters.playerPos).to.deep.equal({ row: 0, col: 1 })
+    vm.$children[0].move('DOWN')
+    expect(vm.$children[0].$store.getters.playerPos).to.deep.equal({ row: 1, col: 1 })
+    vm.$children[0].move('LEFT')
+    expect(vm.$children[0].$store.getters.playerPos).to.deep.equal({ row: 1, col: 0 })
+    vm.$children[0].move('RIGHT')
+    expect(vm.$children[0].$store.getters.playerPos).to.deep.equal({ row: 1, col: 1 })
+  })
+
+  it('increases score when the player moves over food', () => {
+    expect(vm.$children[0].$store.getters.score).to.equal(0)
+    vm.$children[0].move('UP')
+    vm.$children[0].move('LEFT')
+    expect(vm.$children[0].$store.getters.score).to.equal(1)
   })
 })
