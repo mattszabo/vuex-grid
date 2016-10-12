@@ -2,14 +2,6 @@ import Vue from 'vue'
 import GridInput from 'src/controllers/GridInput.vue'
 import store from 'src/store/store'
 
-// const state = {
-//   width: 10,
-//   height: 10,
-//   playerPos: { row: 1, col: 1 },
-//   foodPos: { row: 0, col: 0 },
-//   score: 0
-// }
-
 describe('<GridInput />', () => {
   const GridInputComponent = Vue.extend(GridInput)
   let vm = new GridInputComponent().$mount()
