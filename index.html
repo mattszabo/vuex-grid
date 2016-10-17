@@ -4,7 +4,17 @@
     <meta charset="utf-8">
     <title>vuex-grid</title>
   </head>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+    socket.on('player-count', function(playerCount) {
+      console.log('Players connected: ' + playerCount.count);
+      document.getElementById('player-count').innerHTML = 'Player count: ' + playerCount.count
+    })
+    socket.emit('client-event', 'message from client')
+  </script>
   <body>
+    <div id="player-count"></div>
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
